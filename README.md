@@ -1,11 +1,11 @@
 # cached-ipaddress
 
 <p align="center">
-  <a href="https://github.com/bdraco/cached-ipaddress/actions/workflows/ci.yml?query=branch%3Amain">
-    <img src="https://img.shields.io/github/actions/workflow/status/bdraco/cached-ipaddress/ci.yml?branch=main&label=CI&logo=github&style=flat-square" alt="CI Status" >
+  <a href="https://github.com/bluetooth-devices/cached-ipaddress/actions/workflows/ci.yml?query=branch%3Amain">
+    <img src="https://img.shields.io/github/actions/workflow/status/bluetooth-devices/cached-ipaddress/ci.yml?branch=main&label=CI&logo=github&style=flat-square" alt="CI Status" >
   </a>
-  <a href="https://codecov.io/gh/bdraco/cached-ipaddress">
-    <img src="https://img.shields.io/codecov/c/github/bdraco/cached-ipaddress.svg?logo=codecov&logoColor=fff&style=flat-square" alt="Test coverage percentage">
+  <a href="https://codecov.io/gh/bluetooth-devices/cached-ipaddress">
+    <img src="https://img.shields.io/codecov/c/github/bluetooth-devices/cached-ipaddress.svg?logo=codecov&logoColor=fff&style=flat-square" alt="Test coverage percentage">
   </a>
 </p>
 <p align="center">
@@ -29,7 +29,7 @@
 
 ---
 
-**Source Code**: <a href="https://github.com/bdraco/cached-ipaddress" target="_blank">https://github.com/bdraco/cached-ipaddress </a>
+**Source Code**: <a href="https://github.com/bluetooth-devices/cached-ipaddress" target="_blank">https://github.com/bluetooth-devices/cached-ipaddress </a>
 
 ---
 
