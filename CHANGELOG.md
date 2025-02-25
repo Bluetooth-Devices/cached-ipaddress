@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.9.2 (2025-02-25)
+
+### Bug fixes
+
+- Ensure build .c files to not ship to reduce package size (#49) ([`cbea8aa`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/cbea8aab457006a1e763e96a9861e6b46e83d43e))
+
 ## v0.9.1 (2025-02-25)
 
 ### Bug fixes
