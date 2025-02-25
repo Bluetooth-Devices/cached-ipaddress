@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.9.1 (2025-02-25)
+
+### Bug fixes
+
+- Use trusted uploads for all paths (#48) ([`34958f0`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/34958f08e8fc2b1d65b01343ce8694259b79258e))
+
 ## v0.9.0 (2025-02-25)
 
 ### Features
