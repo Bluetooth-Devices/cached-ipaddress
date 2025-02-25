@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.9.0 (2025-02-25)
+
+### Features
+
+- Add pre-built wheels (#47) ([`5d0d7ed`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/5d0d7edbf9d5fd28d66d37634f6b777fe93903be))
+
 ## v0.8.1 (2025-02-22)
 
 ### Bug fixes
