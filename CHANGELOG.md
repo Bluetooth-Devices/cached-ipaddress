@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.10.0 (2025-03-05)
+
+### Features
+
+- Reduce size of wheels (#53) ([`9db200c`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/9db200cd738c7b1db3b651bb03bfb4756386d87e))
+
 ## v0.9.2 (2025-02-25)
 
 ### Bug fixes
