@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cached-ipaddress"
-version = "0.10.0"
+version = "1.0.0-rc.1"
 description = "Cache construction of ipaddress objects"
 authors = ["J. Nick Koston <nick@koston.org>"]
 license = "MIT"
