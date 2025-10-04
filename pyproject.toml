@@ -39,7 +39,7 @@ pytest-cov = ">=3,<8"
 pytest-codspeed = ">=3.2,<5.0"
 
 [tool.semantic_release]
-version_toml = ["pyproject.toml:tool.poetry.version"]
+version_toml = ["pyproject.toml:project.version"]
 version_variables = [
     "src/cached_ipaddress/__init__.py:__version__",
 ]
