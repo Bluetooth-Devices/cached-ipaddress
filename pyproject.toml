@@ -1,31 +1,29 @@
-[tool.poetry]
+[project]
 name = "cached-ipaddress"
 version = "1.0.0"
-description = "Cache construction of ipaddress objects"
-authors = ["J. Nick Koston <nick@koston.org>"]
 license = "MIT"
+description = "Cache construction of ipaddress objects"
 readme = "README.md"
-repository = "https://github.com/bluetooth-devices/cached-ipaddress"
+authors = [{ name = "J. Nick Koston <nick@koston.org>" }]
+requires-python = ">=3.9"
+
+[project.urls]
+"Repository" = "https://github.com/bluetooth-devices/cached-ipaddress"
+"Bug Tracker" = "https://github.com/bluetooth-devices/cached-ipaddress/issues"
+"Changelog" = "https://github.com/bluetooth-devices/cached-ipaddress/blob/main/CHANGELOG.md"
+
+[tool.poetry]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Topic :: Software Development :: Libraries",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
 ]
 packages = [
     { include = "cached_ipaddress", from = "src" },
 ]
 exclude = [ "**/*.c" ]
-
-[tool.poetry.urls]
-"Bug Tracker" = "https://github.com/bluetooth-devices/cached-ipaddress/issues"
-"Changelog" = "https://github.com/bluetooth-devices/cached-ipaddress/blob/main/CHANGELOG.md"
 
 [tool.poetry.build]
 generate-setup-file = true
@@ -137,6 +135,5 @@ module = "tests.*"
 allow_untyped_defs = true
 
 [build-system]
-# 1.5.2 required for https://github.com/python-poetry/poetry/issues/7505
-requires = ['setuptools>=65.4.1', 'wheel', 'Cython>=3.0.5', "poetry-core>=1.5.2"]
+requires = ['setuptools>=77.0', 'Cython>=3.0.5', "poetry-core>=2.1.0"]
 build-backend = "poetry.core.masonry.api"
