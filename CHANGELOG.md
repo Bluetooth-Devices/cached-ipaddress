@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.1 (2025-10-04)
+
+### Bug fixes
+
+- Update poetry to v2 ([`f45a007`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/f45a007a578ff1a5edea92025635fe5c0b3a1d96))
+
 ## v1.0.0 (2025-10-04)
 
 ## v0.11.0 (2025-10-04)
