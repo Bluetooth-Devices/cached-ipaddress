@@ -41,6 +41,8 @@ jobs:
           - "3.11"
           - "3.12"
           - "3.13"
+          - "3.14"
+          - "3.14t"
         os:
           - ubuntu-latest
           - macOS-latest
@@ -55,6 +57,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
           cache: "poetry"
       - name: Install Dependencies
         run: |
@@ -184,6 +187,14 @@ jobs:
             qemu: armv7l
             musl: "musllinux"
             pyver: cp313
+          - os: ubuntu-latest
+            qemu: armv7l
+            musl: "musllinux"
+            pyver: cp314
+          - os: ubuntu-latest
+            qemu: armv7l
+            musl: "musllinux"
+            pyver: cp314t
           # qemu is slow, make a single
           # runner per Python version
           - os: ubuntu-latest
@@ -206,6 +217,14 @@ jobs:
             qemu: armv7l
             musl: ""
             pyver: cp313
+          - os: ubuntu-latest
+            qemu: armv7l
+            musl: ""
+            pyver: cp314
+          - os: ubuntu-latest
+            qemu: armv7l
+            musl: ""
+            pyver: cp314t
     steps:
       - uses: actions/checkout@v5
         with:
