@@ -1,4 +1,4 @@
-__version__ = "0.11.0"
+__version__ = "1.0.0"
 
 from .ipaddress import cached_ip_addresses
 
