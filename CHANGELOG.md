@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.11.0 (2025-10-04)
+
+### Features
+
+- Add wheels for python 3.14 (#89) ([`8a9704f`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/8a9704f9432d05bc0ff03fab72935ab5ab21fff4))
+
 ## v0.10.0 (2025-03-05)
 
 ### Features
