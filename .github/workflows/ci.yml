@@ -71,7 +71,7 @@ jobs:
         run: poetry run pytest --durations=20 -v --cov=src --cov-branch --cov-report xml --cov-report html --cov-report term-missing tests
         shell: bash
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
@@ -260,7 +260,7 @@ jobs:
             echo "CIBW_BUILD=${{ matrix.pyver }}*" >> $GITHUB_ENV
           fi
       - name: Build wheels
-        uses: pypa/cibuildwheel@v3.4.0
+        uses: pypa/cibuildwheel@v3.4.1
         env:
           CIBW_SKIP: cp36-* cp37-* cp38-* pp* ${{ matrix.musl == 'musllinux' && '*manylinux*' || '*musllinux*' }}
           REQUIRE_CYTHON: 1
@@ -287,6 +287,6 @@ jobs:
           merge-multiple: true
 
       - uses:
-          pypa/gh-action-pypi-publish@v1.13.0
+          pypa/gh-action-pypi-publish@v1.14.0
 
           # To test: repository_url: https://test.pypi.org/legacy/
