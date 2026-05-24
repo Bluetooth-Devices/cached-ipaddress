@@ -55,7 +55,7 @@ Install this via pip (or your favourite package manager):
 from cached_ipaddress import cached_ip_addresses
 
 ip = cached_ip_addresses("127.0.0.1")
-assert ip.is_loopback is False
+assert ip.is_loopback is True
 
 invalid = cached_ip_addresses("invalid")
 assert invalid is None
