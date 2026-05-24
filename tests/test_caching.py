@@ -2,7 +2,7 @@
 Tests for the construction-caching contract of cached_ip_addresses.
 
 These tests lock the library's headline guarantee: building an address from
-the same input returns the *same* cached object, and unparseable input is
+the same input returns the *same* cached object, and unparsable input is
 turned into ``None`` (also cached) rather than raising. The existing
 ``test_ipaddress.py`` exercises per-address property caching; this module
 covers the wrapper-level caching semantics that were previously untested.
@@ -45,7 +45,7 @@ def test_cache_keyed_by_raw_input_not_resolved_address():
     ["", "foo", "1.2.3.04", "256.0.0.0", "1.2.3.4.5", "::g", "12345::"],
 )
 def test_invalid_input_returns_none(invalid):
-    """Unparseable addresses resolve to None instead of raising."""
+    """Unparsable addresses resolve to None instead of raising."""
     assert cached_ip_addresses(invalid) is None
 
 
