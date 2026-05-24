@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.0 (2026-05-24)
+
+### Features
+
+- Cache is_private/is_global/is_reserved and fix hash memoization ([`9e476d7`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/9e476d76a6f532c3bf16e65e425410cb1c503cc9))
+
+### Testing
+
+- Cover is_private/is_global/is_reserved/hash hot paths ([`9f78e7f`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/9f78e7fb0c23afcbf68c8f4b829ce4da611563b1))
+
 ## v1.0.1 (2025-10-04)
 
 ### Bug fixes
