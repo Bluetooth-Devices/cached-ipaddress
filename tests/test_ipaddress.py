@@ -134,6 +134,10 @@ def test_hash_is_cached_on_instance() -> None:
     # ``__init__``; Python looks up dunders on the type, so ``hash(obj)``
     # never consulted that cache. Guard against the regression by asserting
     # the value is memoized into the instance ``__dict__``.
+    #
+    # The factory is an ``@lru_cache`` singleton, so clear it first to
+    # guarantee a fresh instance regardless of what other tests constructed.
+    ipaddress._cached_ip_addresses.cache_clear()
     cached = ipaddress.cached_ip_addresses("8.8.4.4")
     assert cached is not None
     assert "_hash" not in cached.__dict__
