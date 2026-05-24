@@ -84,9 +84,7 @@ def test_equality_hash_and_int_match_stdlib(value):
     cached = cached_ip_addresses(value)
     assert cached is not None
     plain = (
-        IPv4Address(value)
-        if isinstance(cached, IPv4Address)
-        else IPv6Address(value)
+        IPv4Address(value) if isinstance(cached, IPv4Address) else IPv6Address(value)
     )
     assert cached == plain
     assert hash(cached) == hash(plain)
