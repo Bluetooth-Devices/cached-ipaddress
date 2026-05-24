@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.1 (2026-05-24)
+
+### Bug fixes
+
+- Correct readme example and drop removed-in-3.12 distutils ([`a7efbe1`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/a7efbe12bd276eb7f3f1fcbe626153c5edc5bedc))
+
+### Testing
+
+- Cover construction-caching contract of cached_ip_addresses ([`0056784`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/00567845b4876e1c08a762bf4b56556ddd27b85e))
+
 ## v1.1.0 (2026-05-24)
 
 ### Features
