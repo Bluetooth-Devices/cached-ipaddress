@@ -1,24 +1,22 @@
 """Base implementation."""
 
-import sys
 from functools import lru_cache
 from ipaddress import AddressValueError, IPv4Address, IPv6Address, NetmaskValueError
-from typing import Any, Optional, Union
+from typing import Optional, Union
 
 from ._compat import cached_property
-
-if sys.version_info < (3, 9):
-    cache = lru_cache(maxsize=None)
-else:
-    from functools import cache
 
 
 class CachedIPv4Address(IPv4Address):
 
-    def __init__(self, address: Any) -> None:
-        super().__init__(address)
-        self.__hash__ = cache(lambda: IPv4Address.__hash__(self))  # type: ignore[method-assign]
-        self.__int__ = cache(lambda: IPv4Address.__int__(self))  # type: ignore[method-assign]
+    def __hash__(self) -> int:
+        """Return the cached hash of the IPv4 address."""
+        return self._hash
+
+    @cached_property
+    def _hash(self) -> int:
+        """Return the hash of the IPv4 address."""
+        return super().__hash__()
 
     def __str__(self) -> str:
         """Return the string representation of the IPv4 address."""
@@ -48,6 +46,21 @@ class CachedIPv4Address(IPv4Address):
     def is_multicast(self) -> bool:
         """Return True if this is a multicast address."""
         return super().is_multicast
+
+    @cached_property
+    def is_private(self) -> bool:
+        """Return True if this is a private address."""
+        return super().is_private
+
+    @cached_property
+    def is_global(self) -> bool:
+        """Return True if this is a global address."""
+        return super().is_global
+
+    @cached_property
+    def is_reserved(self) -> bool:
+        """Return True if this is a reserved address."""
+        return super().is_reserved
 
     @cached_property
     def reverse_pointer(self) -> str:
@@ -62,10 +75,14 @@ class CachedIPv4Address(IPv4Address):
 
 class CachedIPv6Address(IPv6Address):
 
-    def __init__(self, address: Any) -> None:
-        super().__init__(address)
-        self.__hash__ = cache(lambda: IPv6Address.__hash__(self))  # type: ignore[method-assign]
-        self.__int__ = cache(lambda: IPv6Address.__int__(self))  # type: ignore[method-assign]
+    def __hash__(self) -> int:
+        """Return the cached hash of the IPv6 address."""
+        return self._hash
+
+    @cached_property
+    def _hash(self) -> int:
+        """Return the hash of the IPv6 address."""
+        return super().__hash__()
 
     def __str__(self) -> str:
         """Return the string representation of the IPv6 address."""
@@ -95,6 +112,21 @@ class CachedIPv6Address(IPv6Address):
     def is_multicast(self) -> bool:
         """Return True if this is a multicast address."""
         return super().is_multicast
+
+    @cached_property
+    def is_private(self) -> bool:
+        """Return True if this is a private address."""
+        return super().is_private
+
+    @cached_property
+    def is_global(self) -> bool:
+        """Return True if this is a global address."""
+        return super().is_global
+
+    @cached_property
+    def is_reserved(self) -> bool:
+        """Return True if this is a reserved address."""
+        return super().is_reserved
 
     @cached_property
     def reverse_pointer(self) -> str:
