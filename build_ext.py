@@ -2,13 +2,10 @@
 
 import logging
 import os
-from distutils.command.build_ext import build_ext
 from typing import Any
 
-try:
-    from setuptools import Extension
-except ImportError:
-    from distutils.core import Extension
+from setuptools import Extension
+from setuptools.command.build_ext import build_ext
 
 TO_CYTHONIZE = ["src/cached_ipaddress/ipaddress.py"]
 
