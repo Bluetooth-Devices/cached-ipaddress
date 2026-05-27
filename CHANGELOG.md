@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.2 (2026-05-27)
+
+### Performance improvements
+
+- Cache exploded property on ipv4/ipv6 addresses ([`83addb4`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/83addb4284e1db6c2832773708a6267b345e4dc0))
+
+### Testing
+
+- Cover remaining cached properties (is_loopback/link_local/unspecified/multicast, str, exploded, reverse_pointer) ([`91abb05`](https://github.com/Bluetooth-Devices/cached-ipaddress/commit/91abb053201009d3408047d5d955d6cda21815ac))
+
 ## v1.1.1 (2026-05-24)
 
 ### Bug fixes
