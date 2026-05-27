@@ -72,6 +72,11 @@ class CachedIPv4Address(IPv4Address):
         """Return the compressed value IPv4 address."""
         return super().compressed
 
+    @cached_property
+    def exploded(self) -> str:
+        """Return the exploded form of the IPv4 address."""
+        return super().exploded
+
 
 class CachedIPv6Address(IPv6Address):
 
@@ -137,6 +142,11 @@ class CachedIPv6Address(IPv6Address):
     def compressed(self) -> str:
         """Return the compressed value IPv6 address."""
         return super().compressed
+
+    @cached_property
+    def exploded(self) -> str:
+        """Return the exploded form of the IPv6 address."""
+        return super().exploded
 
 
 @lru_cache(maxsize=535)
