@@ -66,3 +66,120 @@ def test_hash_performance(benchmark: BenchmarkFixture) -> None:
     @benchmark
     def bench() -> None:
         hash(ip)
+
+
+def test_is_loopback_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("127.0.0.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_loopback  # noqa: B018
+
+
+def test_is_loopback_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_loopback  # noqa: B018
+
+
+def test_is_link_local_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("169.254.0.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_link_local  # noqa: B018
+
+
+def test_is_link_local_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("fe80::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_link_local  # noqa: B018
+
+
+def test_is_unspecified_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("0.0.0.0")  # noqa: S104
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_unspecified  # noqa: B018
+
+
+def test_is_unspecified_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("::")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_unspecified  # noqa: B018
+
+
+def test_is_multicast_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("224.0.0.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_multicast  # noqa: B018
+
+
+def test_is_multicast_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("ff02::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_multicast  # noqa: B018
+
+
+def test_str_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("192.0.2.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        str(ip)
+
+
+def test_str_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        str(ip)
+
+
+def test_exploded_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.exploded  # noqa: B018
+
+
+def test_reverse_pointer_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("192.0.2.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.reverse_pointer  # noqa: B018
+
+
+def test_reverse_pointer_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.reverse_pointer  # noqa: B018
