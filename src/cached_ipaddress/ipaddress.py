@@ -2,7 +2,6 @@
 
 from functools import lru_cache
 from ipaddress import AddressValueError, IPv4Address, IPv6Address, NetmaskValueError
-from typing import Optional, Union
 
 from ._compat import cached_property
 
@@ -151,8 +150,8 @@ class CachedIPv6Address(IPv6Address):
 
 @lru_cache(maxsize=535)
 def _cached_ip_addresses(
-    address: Union[str, bytes, int],
-) -> Optional[Union[IPv4Address, IPv6Address]]:
+    address: str | bytes | int,
+) -> IPv4Address | IPv6Address | None:
     """Cache IP addresses."""
     try:
         return CachedIPv4Address(address)
