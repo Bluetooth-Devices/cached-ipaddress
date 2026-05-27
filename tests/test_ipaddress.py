@@ -108,6 +108,7 @@ def test_properties_match_stdlib(address: str) -> None:
         assert getattr(cached, prop) == getattr(expected, prop), prop
     assert cached.reverse_pointer == expected.reverse_pointer
     assert cached.compressed == expected.compressed
+    assert cached.exploded == expected.exploded
     assert str(cached) == str(expected)
     assert hash(cached) == hash(expected)
     assert int(cached) == int(expected)
@@ -121,7 +122,7 @@ def test_cached_values_are_stable(address: str) -> None:
     assert cached is not None
 
     # Two reads of every cached attribute must agree with each other.
-    for prop in (*_BOOL_PROPERTIES, "reverse_pointer", "compressed"):
+    for prop in (*_BOOL_PROPERTIES, "reverse_pointer", "compressed", "exploded"):
         assert getattr(cached, prop) == getattr(cached, prop), prop
     assert hash(cached) == hash(cached)
     assert int(cached) == int(cached)
