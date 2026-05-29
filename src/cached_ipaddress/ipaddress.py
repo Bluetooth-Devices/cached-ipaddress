@@ -2,7 +2,6 @@
 
 from functools import lru_cache
 from ipaddress import AddressValueError, IPv4Address, IPv6Address, NetmaskValueError
-from typing import Optional
 
 from ._compat import cached_property
 
@@ -164,17 +163,17 @@ class CachedIPv6Address(IPv6Address):
         return super().is_site_local
 
     @cached_property
-    def ipv4_mapped(self) -> Optional[IPv4Address]:
+    def ipv4_mapped(self) -> IPv4Address | None:
         """Return the IPv4-mapped address, or None if not an IPv4-mapped address."""
         return super().ipv4_mapped
 
     @cached_property
-    def sixtofour(self) -> Optional[IPv4Address]:
+    def sixtofour(self) -> IPv4Address | None:
         """Return the embedded IPv4 address of a 6to4 address, or None."""
         return super().sixtofour
 
     @cached_property
-    def teredo(self) -> Optional[tuple[IPv4Address, IPv4Address]]:
+    def teredo(self) -> tuple[IPv4Address, IPv4Address] | None:
         """Return the Teredo (server, client) IPv4 tuple, or None."""
         return super().teredo
 
