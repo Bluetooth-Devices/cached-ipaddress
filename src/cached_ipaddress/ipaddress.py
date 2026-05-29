@@ -153,6 +153,11 @@ def _cached_ip_addresses(
     address: str | bytes | int,
 ) -> IPv4Address | IPv6Address | None:
     """Cache IP addresses."""
+    if type(address) is str and ":" in address:
+        try:
+            return CachedIPv6Address(address)
+        except (AddressValueError, NetmaskValueError):
+            return None
     try:
         return CachedIPv4Address(address)
     except (AddressValueError, NetmaskValueError):
