@@ -240,27 +240,33 @@ def test_reverse_pointer_performance_ipv6(benchmark: BenchmarkFixture) -> None:
 
 
 def test_construction_miss_ipv4_string(benchmark: BenchmarkFixture) -> None:
+    addresses = [f"10.0.{i // 256}.{i % 256}" for i in range(400)]
     cache_clear = ipaddress._cached_ip_addresses.cache_clear
 
     @benchmark
     def bench() -> None:
         cache_clear()
-        ipaddress.cached_ip_addresses("192.0.2.1")
+        for addr in addresses:
+            ipaddress.cached_ip_addresses(addr)
 
 
 def test_construction_miss_ipv6_string(benchmark: BenchmarkFixture) -> None:
+    addresses = [f"2001:db8::{i:x}" for i in range(400)]
     cache_clear = ipaddress._cached_ip_addresses.cache_clear
 
     @benchmark
     def bench() -> None:
         cache_clear()
-        ipaddress.cached_ip_addresses("2001:db8::1")
+        for addr in addresses:
+            ipaddress.cached_ip_addresses(addr)
 
 
 def test_construction_miss_invalid_string(benchmark: BenchmarkFixture) -> None:
+    addresses = [f"not-an-ip-{i}" for i in range(400)]
     cache_clear = ipaddress._cached_ip_addresses.cache_clear
 
     @benchmark
     def bench() -> None:
         cache_clear()
-        ipaddress.cached_ip_addresses("not-an-ip")
+        for addr in addresses:
+            ipaddress.cached_ip_addresses(addr)
