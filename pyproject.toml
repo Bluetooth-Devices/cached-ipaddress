@@ -5,7 +5,7 @@ license = "MIT"
 description = "Cache construction of ipaddress objects"
 readme = "README.md"
 authors = [{ name = "J. Nick Koston", email = "nick@koston.org" }]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 [project.urls]
 "Repository" = "https://github.com/bluetooth-devices/cached-ipaddress"
@@ -30,7 +30,7 @@ generate-setup-file = true
 script = "build_ext.py"
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = ">=3.10"
 propcache = ">=0.0.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -78,7 +78,7 @@ exclude_lines = [
 ]
 
 [tool.ruff]
-target-version = "py38"
+target-version = "py310"
 line-length = 88
 ignore = [
     "D203", # 1 blank line required before class docstring
