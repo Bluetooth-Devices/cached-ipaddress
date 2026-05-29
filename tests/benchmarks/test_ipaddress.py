@@ -50,6 +50,15 @@ def test_is_global_performance(benchmark: BenchmarkFixture) -> None:
         ip.is_global  # noqa: B018
 
 
+def test_is_global_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_global  # noqa: B018
+
+
 def test_is_reserved_performance(benchmark: BenchmarkFixture) -> None:
     ip = ipaddress.cached_ip_addresses("240.0.0.1")
     assert ip is not None
@@ -59,8 +68,26 @@ def test_is_reserved_performance(benchmark: BenchmarkFixture) -> None:
         ip.is_reserved  # noqa: B018
 
 
+def test_is_reserved_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.is_reserved  # noqa: B018
+
+
 def test_hash_performance(benchmark: BenchmarkFixture) -> None:
     ip = ipaddress.cached_ip_addresses("127.0.0.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        hash(ip)
+
+
+def test_hash_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
     assert ip is not None
 
     @benchmark
@@ -158,6 +185,15 @@ def test_str_performance_ipv6(benchmark: BenchmarkFixture) -> None:
         str(ip)
 
 
+def test_exploded_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("192.0.2.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.exploded  # noqa: B018
+
+
 def test_exploded_performance_ipv6(benchmark: BenchmarkFixture) -> None:
     ip = ipaddress.cached_ip_addresses("2001:db8::1")
     assert ip is not None
@@ -165,6 +201,24 @@ def test_exploded_performance_ipv6(benchmark: BenchmarkFixture) -> None:
     @benchmark
     def bench() -> None:
         ip.exploded  # noqa: B018
+
+
+def test_compressed_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("192.0.2.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.compressed  # noqa: B018
+
+
+def test_compressed_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.compressed  # noqa: B018
 
 
 def test_reverse_pointer_performance(benchmark: BenchmarkFixture) -> None:
