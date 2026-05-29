@@ -2,6 +2,7 @@
 
 from functools import lru_cache
 from ipaddress import AddressValueError, IPv4Address, IPv6Address, NetmaskValueError
+from typing import Optional
 
 from ._compat import cached_property
 
