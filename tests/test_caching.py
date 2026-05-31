@@ -94,3 +94,74 @@ def test_equality_hash_and_int_match_stdlib(value):
 def test_public_wrapper_is_module_level_callable():
     """The exported name and the module attribute reference the same wrapper."""
     assert ipaddress.cached_ip_addresses is cached_ip_addresses
+
+
+def test_cache_info_reports_hits_and_misses():
+    """``cache_info()`` reflects miss-then-hit behaviour for the same input."""
+    cached_ip_addresses.cache_clear()
+    before = cached_ip_addresses.cache_info()
+    assert before.hits == 0
+    assert before.misses == 0
+
+    cached_ip_addresses("10.0.0.1")
+    cached_ip_addresses("10.0.0.1")
+    cached_ip_addresses("10.0.0.1")
+
+    after = cached_ip_addresses.cache_info()
+    assert after.misses == 1
+    assert after.hits == 2
+    assert after.currsize == 1
+
+
+def test_cache_clear_drops_cached_objects():
+    """``cache_clear()`` evicts existing entries so a new object is produced."""
+    cached_ip_addresses.cache_clear()
+    first = cached_ip_addresses("172.16.0.1")
+    assert cached_ip_addresses.cache_info().currsize == 1
+
+    cached_ip_addresses.cache_clear()
+    assert cached_ip_addresses.cache_info().currsize == 0
+
+    second = cached_ip_addresses("172.16.0.1")
+    assert first is not second
+    assert first == second
+
+
+def test_cache_maxsize_is_535():
+    """The advertised LRU bound stays at 535 entries."""
+    assert cached_ip_addresses.cache_info().maxsize == 535
+
+
+def test_lru_evicts_oldest_when_over_capacity():
+    """Filling the cache past ``maxsize`` evicts the oldest entry."""
+    cached_ip_addresses.cache_clear()
+    maxsize = cached_ip_addresses.cache_info().maxsize
+    assert maxsize is not None
+
+    oldest = cached_ip_addresses("10.0.0.0")
+    for i in range(1, maxsize):
+        cached_ip_addresses(f"10.0.{i // 256}.{i % 256}")
+
+    info = cached_ip_addresses.cache_info()
+    assert info.currsize == maxsize
+
+    # One more unique input pushes the oldest out.
+    cached_ip_addresses(f"10.0.{maxsize // 256}.{maxsize % 256}")
+    assert cached_ip_addresses.cache_info().currsize == maxsize
+
+    # Re-requesting the original is now a miss → fresh object.
+    reborn = cached_ip_addresses("10.0.0.0")
+    assert reborn is not oldest
+    assert reborn == oldest
+
+
+def test_none_results_consume_a_cache_slot():
+    """Unparsable inputs are cached too, so they count toward ``currsize``."""
+    cached_ip_addresses.cache_clear()
+    assert cached_ip_addresses("not-an-ip") is None
+    assert cached_ip_addresses("not-an-ip") is None
+
+    info = cached_ip_addresses.cache_info()
+    assert info.misses == 1
+    assert info.hits == 1
+    assert info.currsize == 1
