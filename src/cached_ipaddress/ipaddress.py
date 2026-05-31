@@ -26,6 +26,15 @@ class CachedIPv4Address(IPv4Address):
         """Return the string representation of the IPv4 address."""
         return super().__str__()
 
+    def __repr__(self) -> str:
+        """Return the cached repr of the IPv4 address."""
+        return self._repr
+
+    @cached_property
+    def _repr(self) -> str:
+        """Return the repr of the IPv4 address."""
+        return super().__repr__()
+
     @cached_property
     def is_link_local(self) -> bool:
         """Return True if this is a link-local address."""
@@ -96,6 +105,15 @@ class CachedIPv6Address(IPv6Address):
     def _str(self) -> str:
         """Return the string representation of the IPv6 address."""
         return super().__str__()
+
+    def __repr__(self) -> str:
+        """Return the cached repr of the IPv6 address."""
+        return self._repr
+
+    @cached_property
+    def _repr(self) -> str:
+        """Return the repr of the IPv6 address."""
+        return super().__repr__()
 
     @cached_property
     def is_link_local(self) -> bool:

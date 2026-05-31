@@ -185,6 +185,24 @@ def test_str_performance_ipv6(benchmark: BenchmarkFixture) -> None:
         str(ip)
 
 
+def test_repr_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("192.0.2.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        repr(ip)
+
+
+def test_repr_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        repr(ip)
+
+
 def test_exploded_performance(benchmark: BenchmarkFixture) -> None:
     ip = ipaddress.cached_ip_addresses("192.0.2.1")
     assert ip is not None
