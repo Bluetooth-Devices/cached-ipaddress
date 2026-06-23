@@ -237,3 +237,57 @@ def test_reverse_pointer_performance_ipv6(benchmark: BenchmarkFixture) -> None:
     @benchmark
     def bench() -> None:
         ip.reverse_pointer  # noqa: B018
+
+
+def test_packed_performance(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("192.0.2.1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.packed  # noqa: B018
+
+
+def test_packed_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001:db8::1")
+    assert ip is not None
+
+    @benchmark
+    def bench() -> None:
+        ip.packed  # noqa: B018
+
+
+def test_is_site_local_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("fec0::1")
+    assert isinstance(ip, ipaddress.CachedIPv6Address)
+
+    @benchmark
+    def bench() -> None:
+        ip.is_site_local  # noqa: B018
+
+
+def test_ipv4_mapped_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("::ffff:192.168.1.1")
+    assert isinstance(ip, ipaddress.CachedIPv6Address)
+
+    @benchmark
+    def bench() -> None:
+        ip.ipv4_mapped  # noqa: B018
+
+
+def test_sixtofour_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2002:db8::1")
+    assert isinstance(ip, ipaddress.CachedIPv6Address)
+
+    @benchmark
+    def bench() -> None:
+        ip.sixtofour  # noqa: B018
+
+
+def test_teredo_performance_ipv6(benchmark: BenchmarkFixture) -> None:
+    ip = ipaddress.cached_ip_addresses("2001::1")
+    assert isinstance(ip, ipaddress.CachedIPv6Address)
+
+    @benchmark
+    def bench() -> None:
+        ip.teredo  # noqa: B018

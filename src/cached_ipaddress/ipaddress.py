@@ -76,6 +76,11 @@ class CachedIPv4Address(IPv4Address):
         """Return the exploded form of the IPv4 address."""
         return super().exploded
 
+    @cached_property
+    def packed(self) -> bytes:
+        """Return the packed binary form of the IPv4 address."""
+        return super().packed
+
 
 class CachedIPv6Address(IPv6Address):
 
@@ -146,6 +151,31 @@ class CachedIPv6Address(IPv6Address):
     def exploded(self) -> str:
         """Return the exploded form of the IPv6 address."""
         return super().exploded
+
+    @cached_property
+    def packed(self) -> bytes:
+        """Return the packed binary form of the IPv6 address."""
+        return super().packed
+
+    @cached_property
+    def is_site_local(self) -> bool:
+        """Return True if this is a site-local address."""
+        return super().is_site_local
+
+    @cached_property
+    def ipv4_mapped(self) -> IPv4Address | None:
+        """Return the IPv4-mapped address, or None if not an IPv4-mapped address."""
+        return super().ipv4_mapped
+
+    @cached_property
+    def sixtofour(self) -> IPv4Address | None:
+        """Return the embedded IPv4 address of a 6to4 address, or None."""
+        return super().sixtofour
+
+    @cached_property
+    def teredo(self) -> tuple[IPv4Address, IPv4Address] | None:
+        """Return the Teredo (server, client) IPv4 tuple, or None."""
+        return super().teredo
 
 
 @lru_cache(maxsize=535)
