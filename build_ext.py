@@ -31,8 +31,9 @@ class BuildExt(build_ext):
         try:
             super().build_extensions()
         except Exception:
+            if os.environ.get("REQUIRE_CYTHON"):
+                raise
             _LOGGER.debug("Failed to build extensions", exc_info=True)
-            pass
 
 
 def build(setup_kwargs: Any) -> None:
