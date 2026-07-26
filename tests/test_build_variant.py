@@ -17,6 +17,6 @@ def test_build_variant_matches_ci_matrix() -> None:
     # in-place next to ``ipaddress.py``, that entry shadows it and the
     # ``use_cython`` legs test the pure-Python module while staying green.
     compiled = not ipaddress.__file__.endswith(".py")
-    assert compiled is (EXPECTED == "use_cython"), (
-        f"expected {EXPECTED!r} build, imported {ipaddress.__file__}"
-    )
+    assert compiled is (
+        EXPECTED == "use_cython"
+    ), f"expected {EXPECTED!r} build, imported {ipaddress.__file__}"
