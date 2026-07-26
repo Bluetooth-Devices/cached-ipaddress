@@ -68,6 +68,10 @@ jobs:
         shell: bash
       - name: Test with Pytest
         run: poetry run pytest --durations=20 -v --cov=src --cov-branch --cov-report xml --cov-report html --cov-report term-missing tests
+        env:
+          # Lets tests/test_build_variant.py verify this leg imported the
+          # module it installed, rather than a shadowed copy.
+          CACHED_IPADDRESS_EXPECT_EXTENSION: ${{ matrix.extension }}
         shell: bash
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v6
