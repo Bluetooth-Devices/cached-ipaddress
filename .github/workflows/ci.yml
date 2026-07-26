@@ -172,6 +172,11 @@ jobs:
     name: Wheels for ${{ matrix.os }} (${{ matrix.musl == 'musllinux' && 'musllinux' || 'manylinux' }}) ${{ matrix.qemu }} ${{ matrix.pyver }}
     runs-on: ${{ matrix.os }}
     strategy:
+      # A partial wheel set is unrecoverable: semantic-release has already
+      # tagged and published the sdist by this point, and re-running the
+      # workflow is a no-op (released != 'true'). Let every leg finish so a
+      # flaky one can be retried with "Re-run failed jobs".
+      fail-fast: false
       matrix:
         os:
           [
